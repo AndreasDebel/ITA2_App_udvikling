@@ -16,6 +16,7 @@ namespace WebApp.Drawings
             t.MoveTo(cx, cy);
             t.TurnTo(0);
             t.Down();
+            t.Color = "blue";
             t.Width = 1;
            
             for (int i = 0; i < 36; i++)
