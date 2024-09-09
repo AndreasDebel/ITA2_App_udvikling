@@ -2,6 +2,6 @@
 
 using Modul4;
 
-Console.WriteLine("Hello, World!");
+//Console.WriteLine("Hello, World!");
 
-TestDice.Run();
+TestLotto.Run();
