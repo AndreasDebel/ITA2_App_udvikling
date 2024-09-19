@@ -20,20 +20,21 @@ public class PersonArray
         };
     }
 
-}
+
             
         
 
-        public void LogPersons()
+    public void LogPersons()
+    {
+        for (int i = 0; i < personArray.Length; i++)
         {
-            for (int i = 0; i < personArray.Length; i++)
-            {
-                Console.WriteLine($"At index pos. {i}, we have {personArray[i].name}.");
-            }
+        string pronoun = "";
+        if (personArray[i].isMale == true) pronoun = "He"; else pronoun = "She";
+            Console.WriteLine($"At index pos. {i}, we have {personArray[i].name}. {pronoun} was born {personArray[i].birthday.ToString()}. {pronoun} is {personArray[i].height} cm tall and wheighs {personArray[i].weight} kg. BMI: {personArray[i].CalcBMI()}");
         }
-
+    }
 
             
         
-    }
+}
 

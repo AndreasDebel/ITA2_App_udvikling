@@ -22,5 +22,13 @@ namespace Modul5
             this.height = height;
             this.weight = weight;
         }
+
+        public double CalcBMI()
+        {
+            double heightM = height / 100.0;
+            double BMI = weight / (heightM * heightM);
+            return Math.Round(BMI, 2);
+        }
+
     }
 }
