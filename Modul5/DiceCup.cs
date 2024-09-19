@@ -1,36 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Modul5;
 
-namespace Modul5;
+public class DiceCup
+{
+    private List<Dice> diceList;
+    public List<int> eyesList { get; private set; }
 
-    public class DiceCup
+    public DiceCup(int numberOfDice = 2)
     {
-        private List<Dice> diceList;
-        public List<int> eyesList {  get; private set; }
-        public int a_eyes { get; private set; }
-        public int b_eyes { get; private set; }
+        diceList = new List<Dice>();
+        eyesList = new List<int>();
 
-    public DiceCup()
+        for (int i = 0; i < numberOfDice; i++)
         {
-            Dice a = new Dice();
-            Dice b = new Dice();
-    
-
+            diceList.Add(new Dice());
+            eyesList.Add(0);
         }
-        public void ShakeCup()
-        {
+    } 
 
-            a.Roll();
-            b.Roll();
-        }
+    //public int a_eyes { get; private set; }
+    //public int b_eyes { get; private set; }
 
-        public void LiftCup()
+    //public DiceCup()
+    //{
+    //    Dice a = new Dice();
+    //    Dice b = new Dice();
+
+
+    //}
+    public void ShakeCup()
+    {
+        foreach (Dice dice in diceList)
         {
-            a_eyes = a.GetEyes();
-            b_eyes = b.GetEyes();
+            dice.Roll();
         }
     }
+
+    public void LiftCup()
+    {
+        for (int i = 0; i < diceList.Count; i++)
+        {
+            eyesList[i] = diceList[i].GetEyes();
+        }
+    }
+}
 

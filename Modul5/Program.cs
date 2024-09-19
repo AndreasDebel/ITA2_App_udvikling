@@ -2,4 +2,4 @@
 
 //Console.WriteLine("Hello, World!");
 
-TestDiceCup.Run();
+TestPersons.Run();
