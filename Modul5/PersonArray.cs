@@ -16,17 +16,17 @@ public class PersonArray
         {
             personArray = new Person[]
             {
-                new Person("Per", new DateOnly(1990, 5, 24), true, 168, 70),
-                new Person("Lotte", new DateOnly(1964, 6, 24), false, 159, 55),
-                new Person("Hansi", new DateOnly(2010, 1, 8), true, 181, 78)
+                new Person("Per", "2405901661", true, 168, 70),
+                new Person("Lotte", "2406647552", false, 159, 55),
+                new Person("Hansi", "0801108683", true, 181, 78)
             };
-            personArray[1].CPR = "3006921445"; 
+
         }
         catch (ArgumentException ex) 
-        { 
+        {
             Console.WriteLine(ex.Message);
         }
-        
+
     }
 
 
@@ -35,6 +35,12 @@ public class PersonArray
 
     public void LogPersons()
     {
+        if (personArray == null)
+        {
+            Console.WriteLine("No persons available to log.");
+            return;
+        }
+
         for (int i = 0; i < personArray.Length; i++)
         {
         string pronoun = "";

@@ -15,11 +15,11 @@ namespace Modul5
         public int height;
         public int weight;
 
-        public Person(string name, DateOnly birthday, bool isMale, int height, int weight)
+        public Person(string name, string cpr, bool isMale, int height, int weight)
         {
             this.name = name;
-            this.birthday = birthday;
             this.isMale = isMale;
+            CPR = cpr;
             this.height = height;
             this.weight = weight;
         }
@@ -30,6 +30,10 @@ namespace Modul5
             get { return _CPR; }
             set
             {
+
+
+                //Console.WriteLine($"Validating CPR: {value} | Last Digit: {lastDigit} | Gender: {(isMale ? "Male" : "Female")}");
+
                 if (value.Length != 10)
                 {
                     throw new ArgumentException("CPR must be exactly 10 digits long");
@@ -78,9 +82,17 @@ namespace Modul5
                 if (lastDigit % 2 == 0 && isMale == true) throw new ArgumentException("The CPR number has to be odd if the person is male.");
                 if (lastDigit % 2 == 1 && isMale == false) throw new ArgumentException("The CPR number has to be even if the person is female.");
 
+                string FifthAndSixthDigit = value.Substring(4, 2);
+                int year = int.Parse(FifthAndSixthDigit);
+                year += year < 25 ? 2000 : 1900;
+
+                birthday = new DateOnly(year, month, day);
+
                 _CPR = value;
             }
         }
+
+
 
         public double CalcBMI()
         {
