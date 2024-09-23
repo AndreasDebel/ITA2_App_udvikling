@@ -1,6 +1,6 @@
 ﻿using Modul5;
 
-TestPersons.Run();
+TestDiceCup.Run();
 
 
 //DateOnly today = DateOnly.FromDateTime(DateTime.Now);

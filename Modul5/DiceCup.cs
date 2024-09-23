@@ -4,6 +4,7 @@ public class DiceCup
 {
     private List<Dice> diceList;
     public List<int> eyesList { get; private set; }
+    public List<CupLiftEvent> cupHistory = new();
 
     public DiceCup(int numberOfDice = 2)
     {
@@ -17,16 +18,6 @@ public class DiceCup
         }
     } 
 
-    //public int a_eyes { get; private set; }
-    //public int b_eyes { get; private set; }
-
-    //public DiceCup()
-    //{
-    //    Dice a = new Dice();
-    //    Dice b = new Dice();
-
-
-    //}
     public void ShakeCup()
     {
         foreach (Dice dice in diceList)
@@ -35,12 +26,22 @@ public class DiceCup
         }
     }
 
+    
     public void LiftCup()
     {
         for (int i = 0; i < diceList.Count; i++)
         {
             eyesList[i] = diceList[i].GetEyes();
         }
+        CupLiftEvent CLevent = new CupLiftEvent(eyesList, DateTime.Now);
+        cupHistory.Add(CLevent);
     }
+
+    public List<CupLiftEvent> GetHistory()
+    {          
+        return cupHistory;        
+    }
+
+
 }
 

@@ -101,12 +101,17 @@ namespace Modul5
             return Math.Round(BMI, 2);
         }
 
-        public bool IsTeenager()
-        {
-            DateTime today = DateTime.Now;
-            DateTime birthday_DT = birthday.ToDateTime(new TimeOnly(0, 0));
-            int age = today.Year - birthday_DT.Year;
-            if (age >= 13 && age <= 19) return true; else return false;
+        public bool IsTeenager
+        { get
+            {
+                DateTime today = DateTime.Now;
+                DateTime birthday_DT = birthday.ToDateTime(new TimeOnly(0, 0));
+                int age = today.Year - birthday_DT.Year;
+                if (today.Month < birthday_DT.Month) age--;
+                else if (today.Month == birthday_DT.Month && today.Day <= birthday_DT.Day) age--;
+                if (age >= 13 && age <= 19) return true; else return false;
+            }
+            
         }
 
     }
