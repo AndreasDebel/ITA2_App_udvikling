@@ -8,7 +8,7 @@ public class TestDiceCup
 
         dc.ShakeCup();
         dc.LiftCup();
-        int[] eyes_array = new int[] { dc.a_eyes, dc.b_eyes };
-        Console.WriteLine(string.Join(", ", eyes_array));
+
+        Console.WriteLine(string.Join(", ", dc.eyesList));
     }
 }
