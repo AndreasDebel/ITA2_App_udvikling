@@ -8,7 +8,7 @@ namespace Modul5
 {
     public class CupLiftEvent
     {
-        private List<int> _eventEyes;
+        public List<int> _eventEyes;
         public DateTime _eventTime;
 
         public CupLiftEvent(List<int> _eventEyes, DateTime _eventTime)

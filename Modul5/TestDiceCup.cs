@@ -21,7 +21,7 @@ public class TestDiceCup
         List<CupLiftEvent> events = dc.GetHistory();
         for (int i = 0; i < events.Count; i++)
         {
-            string eyesString = string.Join(", ", events[i]._eyesList);
+            string eyesString = string.Join(", ", events[i]._eventEyes);
             Console.WriteLine($"Cup Lift {i} -- Date: {events[i]._eventTime}. Eyes: {eyesString}");
         }
 
