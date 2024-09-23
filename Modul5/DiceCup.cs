@@ -22,7 +22,6 @@ namespace Modul5;
         }
         public void ShakeCup()
         {
-
             a.Roll();
             b.Roll();
         }
