@@ -1,0 +1,36 @@
+﻿@page "/circle"
+@using WebApp.Model
+@using WebApp.Drawings
+
+
+<PageTitle>Circle</PageTitle>
+
+<h1>Circle - with Turtle</h1>
+
+<svg viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg">
+
+    @foreach (var line in mLines)
+    {
+        <line x1="@line.X1" y1="@line.Y1" x2="@line.X2" y2="@line.Y2" stroke="@line.Color" stroke-width="@line.Width" />
+    }
+</svg>
+@code {
+
+    List<Line> mLines = new();
+    
+
+    protected override void OnInitialized()
+    {
+        CreateNewDrawing();
+    }
+
+    private void CreateNewDrawing()
+    {
+        Turtle t = new();
+        CircleDrawing drawing = new();
+        drawing.DrawOneCircle(t, 100);
+        mLines = t.mLines;
+    }
+}
+
+

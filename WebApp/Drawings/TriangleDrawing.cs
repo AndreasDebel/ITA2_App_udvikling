@@ -11,6 +11,7 @@ namespace WebApp.Drawings
 
         public void DrawTriangle(ITurtle t, double width, int level)
         {
+            t.StrokeType = "dashed";
             if (level == 0)
                 t.Move(width);
             else

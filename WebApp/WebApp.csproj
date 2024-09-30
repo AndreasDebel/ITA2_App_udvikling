@@ -25,7 +25,4 @@
     <None Remove="Model\" />
     <None Remove="Drawings\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Drawings\" />
-  </ItemGroup>
 </Project>

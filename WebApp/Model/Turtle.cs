@@ -25,6 +25,8 @@ namespace WebApp.Model
             var radian = degree * 2 * Math.PI / 360;
             var newx = x + Math.Cos(radian) * distance;
             var newy = y + Math.Sin(radian) * distance;
+            var newhalfx = x + (Math.Cos(radian) * distance)/2;
+            var newhalfy = y + (Math.Sin(radian) * distance)/2;
 
             if (newx >= 1000)
                 newx = 999;
@@ -35,10 +37,53 @@ namespace WebApp.Model
             if (newy < 0) newy = 0;
 
             if (isDown)
-                mLines.Add(new Line { X1 = x, Y1 = y, X2 = newx, Y2 = newy, Color= this.Color, Width = this.Width });
-            x = newx;
-            y = newy;
+                if (StrokeType == "normal")
+                {
+                    mLines.Add(new Line { X1 = x, Y1 = y, X2 = newx, Y2 = newy, Color = this.Color, Width = this.Width });
+                    x = newx;
+                    y = newy;
+                } else if (StrokeType == "dashed")
+                {
+                    //Find the distance between the new and the old x coordinates
+                    double x_distance = 0;
+                    if(x > newx)
+                    {
+                        x_distance = x - newx;
+                    } else if (x <= newx)
+                    {
+                        x_distance = newx - x;
+                    }
+
+                    //Find the distance between the new and the old y coordinates
+                    double y_distance = 0;
+                    if(y > newy)
+                    {
+                        y_distance = y - newy;
+                    } else if (y <= newy) 
+                    {
+                        y_distance = newy - y;
+                    } 
+
+                    //Caculate hypotenuse - the distance between the new and the old points
+                    double hypothenuse = Math.Sqrt(Math.Pow(y_distance, 2) + Math.Pow(x_distance, 2));
+
+                    int dashLength = 10;
+                    int numOfDashes = Convert.ToInt32(hypothenuse) / dashLength;
+
+                    double x_difference = newx - x;
+                    double y_difference = newy - y;
+                    for (int i = 0; i < numOfDashes; i++)
+                    {
+                        mLines.Add(new Line { X1 = x, Y1 = y, X2 = x + (x_difference/numOfDashes)/2, Y2 = y + (y_difference/numOfDashes)/2, Color = this.Color, Width = this.Width });
+                        x = x + (x_difference/numOfDashes);
+                        y = y + (y_difference/numOfDashes);
+                    }
+                }
+ 
+
         }
+
+
 
         public void Turn(double d)
         {
@@ -73,6 +118,8 @@ namespace WebApp.Model
 
         public string Color { get; set; } = "black";
         public double Width { get; set; } = 1;
+
+        public string StrokeType { get; set; } = "normal";
     }
 }
 

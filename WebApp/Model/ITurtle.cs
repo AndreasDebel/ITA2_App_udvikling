@@ -60,5 +60,7 @@
         /// Reset state to ((0,0), 0, black, 1)
         /// </summary>
         void Reset();
+
+        string StrokeType { get; set; }
     }
 }

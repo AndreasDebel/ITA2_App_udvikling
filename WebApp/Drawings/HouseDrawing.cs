@@ -12,6 +12,7 @@ namespace WebApp.Drawings
 		public void DrawHouse(ITurtle t) {
 			int width = 250;
 			int height = 100;
+			t.StrokeType = "dashed";
 			t.Up();
 			t.MoveTo(50, 250);
 			t.Down();
