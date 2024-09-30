@@ -15,13 +15,6 @@ public class TestDiceCup
             dc.LiftCup();
 
             Console.WriteLine(string.Join(", ", dc.eyesList));
-
-            //events = dc.GetHistory();
-            //for (int j = 0; j < events.Count; j++)
-            //{
-            //    string eyesString = string.Join(", ", events[j]._eventEyes);
-            //    Console.WriteLine($"Cup Lift {j} -- Date: {events[j]._eventTime}. Eyes: {eyesString}");
-            //}
         }
 
         Console.ReadLine();
