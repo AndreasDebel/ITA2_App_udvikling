@@ -33,7 +33,10 @@ public class DiceCup
         {
             eyesList[i] = diceList[i].GetEyes();
         }
-        CupLiftEvent CLevent = new CupLiftEvent(eyesList, DateTime.Now);
+
+        List<int> eyesCopy = new List<int>(eyesList);
+
+        CupLiftEvent CLevent = new CupLiftEvent(eyesCopy, DateTime.Now);
         cupHistory.Add(CLevent);
     }
 
