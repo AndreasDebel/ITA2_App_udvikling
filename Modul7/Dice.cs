@@ -2,7 +2,7 @@ namespace Modul7;
 
 public class Dice
 {
-    private int _eyes;
+    protected int _eyes;
 
     private int _size;
     private Random _random; 
@@ -24,7 +24,7 @@ public class Dice
         _eyes = _random.Next(_size)+1;
     }
 
-    public int GetEyes()
+    public virtual int GetEyes()
     {
         return _eyes;
     }
