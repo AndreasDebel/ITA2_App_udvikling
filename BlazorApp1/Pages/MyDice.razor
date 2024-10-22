@@ -1,7 +1,15 @@
 ﻿@page "/mydice"
 
-<h3>This is the fabulous My dice page</h3>
+<h1>This is the fabulous My dice pages</h1>
+
+<h3>When you click the button, I will display two numbers two you in the range from @lowerlimit to @higherlimit</h3>
+
+<button onclick=@newNumbers>Get some numbers!</button>
 
 @code {
+    // These are the upper and lower limit of my dice rolls
+    int lowerlimit = 1;
+    int higherlimit = 6;
+
 
 }
