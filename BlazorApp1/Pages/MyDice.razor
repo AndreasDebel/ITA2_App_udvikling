@@ -1,15 +1,101 @@
 ﻿@page "/mydice"
+@using BlazorApp1.Model.DiceStuff
 
 <h1>This is the fabulous My dice pages</h1>
 
-<h3>When you click the button, I will display two numbers two you in the range from @lowerlimit to @higherlimit</h3>
+<h3>Choose how many dice you want to roll and get some numbers in the range from @lowerlimit to @higherlimit</h3>
 
-<button onclick=@newNumbers>Get some numbers!</button>
+
+<p>No of dice: </p>
+<div class="diceno-button-container">
+    <button @onclick="() => ButtonClicked(1)" class="@GetButtonClass(1)">One</button>
+    <button @onclick="() => ButtonClicked(2)" class="@GetButtonClass(2)">Two</button>
+    <button @onclick="() => ButtonClicked(3)" class="@GetButtonClass(3)">Three</button>
+    <button @onclick="() => ButtonClicked(4)" class="@GetButtonClass(4)">Four</button>
+    <button @onclick="() => ButtonClicked(5)" class="@GetButtonClass(5)">Five</button>
+    <button @onclick="() => ButtonClicked(6)" class="@GetButtonClass(6)">Six</button>
+</div>
+
+<br />
+<p>Time to roll the dice!</p>
+<button @onclick="newNumbers">Get some numbers!</button>
+
+
+<br />
+<h3>Your numbers are: @eyesListString</h3>
+
+<div class="dice-container">
+    @foreach (var imagePath in imagePaths)
+    {
+        <div class="diceimg">
+        <img src="@imagePath" alt="dice" />
+        </div>
+    }
+</div>
+
+
+
 
 @code {
     // These are the upper and lower limit of my dice rolls
     int lowerlimit = 1;
     int higherlimit = 6;
+
+    int noOfDice = 2;
+    string eyesListString = "";
+
+    List<string> imagePaths = new();
+
+
+
+
+    public void newNumbers()
+    {
+        DiceCup dc = new("regular", noOfDice);
+
+        dc.ShakeCup();
+        dc.LiftCup();
+
+        eyesListString = string.Join(", ", dc.eyesList);
+
+        imagePaths.Clear();
+        for (int i = 0; i < dc.eyesList.Count; i++)
+        {
+            switch (dc.eyesList[i])
+            {
+                case 1:
+                    imagePaths.Add("images/one-dice.jpg");
+                    break;
+                case 2:
+                    imagePaths.Add("images/two-dice.gif");
+                    break;
+                case 3:
+                    imagePaths.Add("images/three-dice.jpg");
+                    break;
+                case 4:
+                    imagePaths.Add("images/four-dice.png");
+                    break;
+                case 5:
+                    imagePaths.Add("images/five-dice.gif");
+                    break;
+                case 6:
+                    imagePaths.Add("images/sixer-dice.jpg");
+                    break;
+            }
+        }
+
+    }
+
+    // Button color
+    private void ButtonClicked(int buttonNumber)
+    {
+        noOfDice = buttonNumber;
+    }
+
+    private string GetButtonClass(int buttonNumber)
+    {
+        return noOfDice == buttonNumber ? "selected-button" : "";
+    }
 
 
 }

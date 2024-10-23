@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlazorApp1.Model.DiceStuff;
+namespace BlazorApp1.Model.DiceStuff
 {
     public class MafiaDice : Dice
     {

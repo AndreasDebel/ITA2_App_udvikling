@@ -109,3 +109,30 @@ code {
 .table {
     background-color: lightgray;
 }
+
+.dice-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+.diceimg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.diceimg img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.diceno-button-container {
+    display: flex;
+}
+
+.selected-button {
+    background-color: lightblue;
+}
+
