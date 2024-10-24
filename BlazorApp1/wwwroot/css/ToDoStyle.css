@@ -1,0 +1,16 @@
+﻿
+
+
+@font-face {
+    font-family: "Danfo";
+    src: url("https://fonts.googleapis.com/css2?family=Danfo&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+}
+
+body {
+}
+
+
+h1 {
+    color: darkblue;
+    font-family: "Danfo", sans-serif;
+}

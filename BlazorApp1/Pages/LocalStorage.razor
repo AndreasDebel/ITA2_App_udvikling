@@ -11,10 +11,10 @@
 
 @code{
 [Inject]
-public IJSRuntime JS { get; set; }
+public IJSRuntime JS { get; set; } = default!;
 
 const string noteKey = "note";
-string noteContent;
+string noteContent = "";
 
 public async void UpdateLocalStorage()
     {
@@ -30,7 +30,7 @@ public async void ClearLocalStorage()
 
 protected override async Task OnInitializedAsync()
     {
-        noteContent = await localStore.GetItemAsync<string>(noteKey);
+        noteContent = await localStore.GetItemAsync<string>(noteKey) ?? "";
     }
 
 }
