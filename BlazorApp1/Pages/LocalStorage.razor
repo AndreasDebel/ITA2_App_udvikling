@@ -7,8 +7,11 @@
 <button @onclick="UpdateLocalStorage">Save</button>
 <button @onclick="ClearLocalStorage">Clear</button>
 
+<DiceRoll noOfDice="3" />
 
 @code{
+[Inject]
+public IJSRuntime JS { get; set; }
 
 const string noteKey = "note";
 string noteContent;
@@ -16,6 +19,7 @@ string noteContent;
 public async void UpdateLocalStorage()
     {
     await localStore.SetItemAsync(noteKey, noteContent);
+    await JS.InvokeVoidAsync("alert", $"Succesfully saved to local storage!");
     }
 
 public async void ClearLocalStorage()

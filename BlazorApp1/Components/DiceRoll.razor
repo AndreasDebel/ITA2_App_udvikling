@@ -1,0 +1,63 @@
+﻿@using BlazorApp1.Model.DiceStuff
+
+<p>Time to roll the dice!</p>
+<button @onclick="newNumbers">Roll @noOfDice dice!</button>
+
+
+<br />
+<h3>Your numbers are: @eyesListString</h3>
+
+<div class="dice-container">
+    @foreach (var imagePath in imagePaths)
+    {
+        <div class="diceimg">
+            <img src="@imagePath" alt="dice" />
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public int noOfDice { get; set; } = 2;
+
+    List<string> imagePaths = new();
+
+    string eyesListString = "";
+
+    public void newNumbers()
+    {
+        DiceCup dc = new("regular", noOfDice);
+
+        dc.ShakeCup();
+        dc.LiftCup();
+
+        eyesListString = string.Join(", ", dc.eyesList);
+
+        imagePaths.Clear();
+        for (int i = 0; i < dc.eyesList.Count; i++)
+        {
+            switch (dc.eyesList[i])
+            {
+                case 1:
+                    imagePaths.Add("images/one-dice.jpg");
+                    break;
+                case 2:
+                    imagePaths.Add("images/two-dice.gif");
+                    break;
+                case 3:
+                    imagePaths.Add("images/three-dice.jpg");
+                    break;
+                case 4:
+                    imagePaths.Add("images/four-dice.png");
+                    break;
+                case 5:
+                    imagePaths.Add("images/five-dice.gif");
+                    break;
+                case 6:
+                    imagePaths.Add("images/sixer-dice.jpg");
+                    break;
+            }
+        }
+
+    }
+}
