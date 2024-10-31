@@ -1,4 +1,5 @@
 ﻿@page "/weather"
+@using Core3
 @inject HttpClient Http
 
 <PageTitle>Weather</PageTitle>
@@ -6,6 +7,9 @@
 <h1>Weather</h1>
 
 <p>This component demonstrates fetching data from the server.</p>
+
+<button class="btn-secondary" @onclick="changeScale">@(tempInC ? "To Fahrenheit" : "To Celcius")</button>
+<br />
 
 @if (forecasts == null)
 {
@@ -17,19 +21,19 @@ else
         <thead>
             <tr>
                 <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
+                <th>@(tempInC ? "Temp. (C)" : "Temp. (F)")</th>
                 <th>Summary</th>
+                <th>City</th>
             </tr>
         </thead>
         <tbody>
             @for (int i = 0; i < forecasts.Length; i++)
             {
-                <tr>
+                <tr style="@(i % 2 == 0 ? "background-color: white;" : "")">
                     <td>@DateTime.Now.AddDays(i).ToString("yyyy-MM-dd")</td>
-                    <td>@forecasts[i].TemperatureC</td>
-                    <td>@forecasts[i].TemperatureF</td>
-                    <td>@forecasts[i].Summary</td>
+                    <td>@(tempInC ? forecasts[i].TemperatureC : forecasts[i].TemperatureF)</td>
+                    <td style="">@forecasts[i].Summary</td>
+                    <td>@forecasts[i].City</td>
                 </tr>
             }
         </tbody>
@@ -43,17 +47,27 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
+        forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("https://localhost:7018/getweather");
     }
 
-    public class WeatherForecast
+    bool tempInC = true;
+
+    private void changeScale()
     {
-        public DateOnly Date { get; set; }
-
-        public int TemperatureC { get; set; }
-
-        public string? Summary { get; set; }
-
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+        tempInC = !tempInC;
     }
+
+    private string getTempColor(int i)
+    {
+        switch (forecasts[i].Summary)
+        {
+            case "Freezing", "Brazing", "Cold" :
+                return "blue";
+
+ 
+        } 
+
+
+    }
+
 }

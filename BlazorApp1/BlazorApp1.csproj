@@ -15,5 +15,13 @@
 	<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.8" PrivateAssets="all" />
 	<PackageReference Include="Blazored.LocalStorage" Version="4.5.0" />
   </ItemGroup>
+	
+  <ItemGroup>
+    <Folder Include="wwwroot\sample-data\" />
+  </ItemGroup>
+	
+  <ItemGroup>
+    <ProjectReference Include="..\Core3\Core3.csproj" />
+  </ItemGroup>
 
 </Project>
