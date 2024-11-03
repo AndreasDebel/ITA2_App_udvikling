@@ -1,11 +1,9 @@
 ﻿@page "/todo"
 @using BlazorApp1.Model
 
-<head>
-    <link rel="stylesheet" href="css/ToDoStyle.css">
-</head>
-
 <h1>ToDoList - version 1 - Der mangler @items.Count(item => !item.IsDone)</h1>
+
+<h2>This second heading has css from the .razor.css isolation!</h2>
 
 <ul>
     @foreach (ToDoItem item in items)
